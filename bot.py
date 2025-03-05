@@ -1,6 +1,6 @@
-import telebot
 import time
 import random, string
+import telebot
 import sqlite3
 
 
@@ -8,13 +8,6 @@ API_TOKEN = 'PLACE BOT TOKEN HERE'  # GET BOT TOKEN FROM BOTFAHTER
 CONTENT_CHANNEL_ID = "PLACE CONTENT CHANNEL ID HERE" # GENERATE A PRIVATE CHANNEL FOR THIS, POST SOMETHING, THEN COLPY LINK ADDRESS, IS SOMETHING LIKE : https://t.me/c/1234567/2 , CONTENT_CHANNEL_ID is 1234567
 BOT_LINK = "PLACE BOT LINK HERE" # LINK TO BOT IS SOMETHING LIKE: https://t.me/XYZ_bot
 DELETE_TIMOUT = 15 # IN SECONDS. BOT DELETES CONTENT AFTER THIS TIME.
-
-bot = telebot.TeleBot(API_TOKEN)
-conn = sqlite3.connect('bot.db', check_same_thread=False)
-conn.execute('''CREATE TABLE IF NOT EXISTS CONTENTS 
-         (ID INTEGER PRIMARY KEY     ,
-         BANNER_ID           TEXT    NOT NULL,
-         CONTENT_ID            TEXT     NOT NULL);''')
 
 # Define a command handler
 @bot.message_handler(commands=['start', 'help'])
@@ -39,8 +32,6 @@ def send_welcome(message):
     else:
         bot.reply_to(message, "start again another way ")
 
-    
-
 # Define a message handler
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
@@ -60,5 +51,11 @@ def echo_all(message):
             bot.send_message(message.chat.id, "error happened:")
             bot.send_message(message.chat.id, e)
     
-
-bot.polling()
+if __name__ == "__main__":
+         bot = telebot.TeleBot(API_TOKEN)
+         conn = sqlite3.connect('bot.db', check_same_thread=False)
+         conn.execute('''CREATE TABLE IF NOT EXISTS CONTENTS 
+             (ID INTEGER PRIMARY KEY     ,
+             BANNER_ID           TEXT    NOT NULL,
+             CONTENT_ID            TEXT     NOT NULL);''')
+         bot.polling()
