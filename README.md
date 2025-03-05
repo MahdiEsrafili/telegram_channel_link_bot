@@ -1,14 +1,14 @@
-requirements: 
+## requirements: 
 
 pip install pyTelegramBotAPI
 
 
-how to run:
+## how to run:
 
-create a bot and a private channel
+1. create a bot and a private channel
 
-add bot to private channel and make it as channel admin 
+2. add bot to private channel and make it as channel admin 
 
-add information in the bot.py
+3. add information in the bot.py
 
-run this command: python bot.py
+4. run this command: python bot.py
