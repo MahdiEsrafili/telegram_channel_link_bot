@@ -1,7 +1,7 @@
 ## requirements: 
-
+```
 pip install pyTelegramBotAPI
-
+```
 
 ## how to run:
 
